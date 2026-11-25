@@ -27,7 +27,8 @@ export async function POST(req: Request) {
   const stream = new ReadableStream({
     async start(controller) {
       const send = (obj: unknown) => controller.enqueue(encoder.encode(`data: ${JSON.stringify(obj)}\n\n`));
-      const reply = `Your agent is not built yet. You asked: "${String(task).slice(0, 200)}". In Chapter 3 you will replace src/app/api/agent/route.ts with a loop that calls the model and its tools.`;
+      void task; // the placeholder never repeats the task, so an empty agent fails every eval
+      const reply = "Your agent is not built yet. In Chapter 3 you will replace src/app/api/agent/route.ts with a loop that calls the model and its tools.";
       for (const word of reply.split(" ")) {
         send({ type: "text_delta", text: word + " " });
         await new Promise((r) => setTimeout(r, 25));

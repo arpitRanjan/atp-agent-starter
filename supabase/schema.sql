@@ -34,6 +34,8 @@ create table if not exists steps (
   output_tokens int default 0,
   cost_usd numeric(10,5) default 0,
   ms int default 0,
+  is_error boolean not null default false,  -- did this step fail (a tool error, a refused call)?
+  error text,                                -- what went wrong, in words
   created_at timestamptz not null default now()
 );
 create index if not exists steps_run_idx on steps(run_id, idx);

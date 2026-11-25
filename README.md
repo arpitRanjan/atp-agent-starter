@@ -39,16 +39,24 @@ You are the product manager of this build. An AI coding tool writes the code; yo
 
 A finished reference build of each chapter is live at [atp-agent.vercel.app](https://atp-agent.vercel.app): try it to see where you are heading.
 
-## Set it up (Chapter 3)
+## Set it up
 
-You need free accounts on GitHub, Supabase and Vercel, and a Claude API key (about $5 of credit covers the whole course).
+You need free accounts on GitHub, Supabase and Vercel, and a Claude API key. Your agent's own calls cost about $5 over the whole course; Claude Code, the AI coding tool, runs on the same key and costs more (budget about $20 to $30 for the course, and watch the console's Usage page).
 
-1. **Fork this repo** on GitHub, then open your fork in a Codespace (the green Code button, then Codespaces). The packages install themselves.
-2. **Create a Supabase project.** In its SQL editor, run `supabase/schema.sql`. Under Authentication, Sign In / Providers, turn on "Allow anonymous sign-ins".
-3. **Add your keys.** Copy `.env.example` to `.env.local` and fill it in: your Claude key, and from Supabase's API Keys page the project URL, the publishable key and the secret key. `.env.local` is never committed.
-4. **Run it:** `npm run dev`, then open the forwarded port. Type a task: the placeholder answers.
-5. **Check it:** `npm run build` must pass before you deploy.
-6. **Deploy:** import your fork into Vercel and add the same keys under the project's Environment Variables.
+**Chapter 2: your copy and your database**
+
+1. **Fork this repo** on GitHub (Fork, then Create fork). Your fork is public, which the grader needs.
+2. **Create a Supabase project.** In its SQL editor, run `supabase/schema.sql`, then `supabase/practice.sql`, and load the practice traces (see `data/practice-traces/README.md`).
+
+**Chapter 3: your live app**
+
+3. **Add your Claude key as a Codespaces secret** at github.com/settings/codespaces (New secret, name `ANTHROPIC_API_KEY`, give your fork access), so Claude Code and the app both find it.
+4. **Open your fork in a Codespace** (the green Code button, then Codespaces, then Create codespace on main). The packages and Claude Code install themselves.
+5. **Turn on anonymous sign-ins** in Supabase: Authentication, Sign In / Providers, "Allow anonymous sign-ins".
+6. **Add your keys.** Copy `.env.example` to `.env.local` and fill it in: from Supabase's Project Settings, the project URL (Data API) and the publishable and secret keys (API Keys). `.env.local` is never committed.
+7. **Run it:** `npm run dev`, then open the forwarded port. Type a task: the placeholder answers.
+8. **Check it:** `npm run build` must pass before you deploy.
+9. **Deploy:** import your fork into Vercel and add the same keys under the project's Environment Variables.
 
 Before you share your live link with anyone, read [SECURITY.md](SECURITY.md): with no login, every visitor can spend your model credit until you add limits.
 
@@ -66,4 +74,4 @@ Before you share your live link with anyone, read [SECURITY.md](SECURITY.md): wi
 
 ## Working with your AI coding tool
 
-`AGENTS.md` holds the rules your AI tool should follow in this repo (Claude Code reads it through `CLAUDE.md`; Copilot and Cursor read `AGENTS.md`). The short version: change files instead of rewriting them, explain every change, keep keys out of code, use the design tokens, and run the build before saying it is done.
+The course uses Claude Code: in your codespace's terminal, type `claude`, then describe the change you want (your brief). It reads the code, makes the change, and explains it; you read the change before keeping it. `AGENTS.md` holds the rules it follows in this repo (Claude Code reads it through `CLAUDE.md`; Copilot and Cursor, if you prefer them, read `AGENTS.md`). The short version: change files instead of rewriting them, explain every change, keep keys out of code, use the design tokens, and run the build before saying it is done.

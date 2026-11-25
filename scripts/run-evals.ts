@@ -6,9 +6,10 @@
 // agent, collects the streamed answer, and checks the simple rules (contains_any,
 // number, must_not_contain). It prints a line for SCOREBOARD.md.
 //
-// What you will add (Chapters 5 and 8): a model judge for "judge" rules, checks on
-// which tools were called, a check that every number in an answer came from a tool,
-// pass^3 reliability, and a gate that runs this on every pull request.
+// What you will add: in Chapter 5, cost per task and a model judge for "judge" rules;
+// in Chapter 8, checks on which tools were called, a check that every number in an
+// answer came from a tool, pass^3 reliability, and a gate on every pull request.
+// Until Chapter 5, only contains_any, number and must_not_contain rules can pass.
 import fs from "node:fs";
 import { createClient } from "@supabase/supabase-js";
 
@@ -47,7 +48,7 @@ function check(t: Task, answer: string): { passed: boolean; reason: string } {
     const bad = r.must_not_contain.filter((s) => lower.includes(s.toLowerCase()));
     return { passed: bad.length === 0, reason: bad.length ? `said "${bad[0]}"` : "must_not_contain" };
   }
-  return { passed: false, reason: "judge rules are not built yet (Chapter 8)" };
+  return { passed: false, reason: "judge rules are not built yet (you add the judge in Chapter 5)" };
 }
 
 async function main() {

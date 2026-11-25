@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+/* Dark mode follows a class on <html>, set from the saved theme or the system setting. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* AllthingsPM "Calm" design system tokens (same values as src/theme/tokens.ts in the main app). */
+:root {
+  --bg: #f5f4f1;
+  --bg-elevated: #ffffff;
+  --bg-sunken: #eeede9;
+  --bg-hover: #e7e5e0;
+  --border: #e7e5e0;
+  --border-strong: #c4c0b8;
+  --divider: rgba(29, 28, 26, 0.1);
+  --text: #1d1c1a;
+  --text-muted: #5f5c57;
+  --text-faint: #6f6c66;
+  --text-on-primary: #ffffff;
+  --primary: #1d1c1a;
+  --primary-hover: #0f0e0d;
+  --accent: #7464a8;
+  --success: #3e8a5e;
+  --danger: #c9483f;
+  --ring: rgba(116, 100, 168, 0.4);
+  --tint-sky: #dcecef;
+  --tint-sky-ink: #1f4950;
+  --tint-lilac: #ebe5f6;
+  --tint-lilac-ink: #493e78;
+  --tint-rose: #f7e2df;
+  --tint-rose-ink: #7d3a33;
+  --tint-sage: #e2ede0;
+  --tint-sage-ink: #2c5e40;
+  --on-tint: #1d1c1a;
+  --on-tint-muted: #4f4c47;
+  --shadow-card: 0 2px 8px rgba(58, 54, 48, 0.05);
+  --shadow-raised: 0 8px 18px rgba(58, 54, 48, 0.08);
+  --dot: #9ec9d1;
+}
+.dark {
+  --bg: #141417;
+  --bg-elevated: #1b1b1f;
+  --bg-sunken: #0e0e10;
+  --bg-hover: #303035;
+  --border: #303035;
+  --border-strong: #8e8d93;
+  --divider: rgba(236, 235, 234, 0.12);
+  --text: #ecebea;
+  --text-muted: #aaa9ae;
+  --text-faint: #8e8d93;
+  --text-on-primary: #0e0e10;
+  --primary: #ecebea;
+  --primary-hover: #ffffff;
+  --accent: #b3a6e0;
+  --success: #7cc49a;
+  --danger: #ee8c84;
+  --ring: rgba(179, 166, 224, 0.45);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-raised: 0 6px 18px rgba(0, 0, 0, 0.5);
+  --dot: #7fb6c0;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-elevated: var(--bg-elevated);
+  --color-sunken: var(--bg-sunken);
+  --color-hover: var(--bg-hover);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--text);
+  --color-muted: var(--text-muted);
+  --color-faint: var(--text-faint);
+  --color-on-primary: var(--text-on-primary);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-sky: var(--tint-sky);
+  --color-sky-ink: var(--tint-sky-ink);
+  --color-lilac: var(--tint-lilac);
+  --color-lilac-ink: var(--tint-lilac-ink);
+  --color-rose: var(--tint-rose);
+  --color-rose-ink: var(--tint-rose-ink);
+  --color-sage: var(--tint-sage);
+  --color-sage-ink: var(--tint-sage-ink);
+  --color-on-tint: var(--on-tint);
+  --color-on-tint-muted: var(--on-tint-muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --shadow-card: var(--shadow-card);
+  --shadow-raised: var(--shadow-raised);
+}
+
+html { background: var(--bg); }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 24px;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--tint-lilac); color: var(--on-tint); }
+:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 6px; }
+
+/* The answer: readable prose at the body size, with tables the way the main app draws them. */
+.answer { font-size: 15px; line-height: 26px; color: var(--text); }
+.answer p { margin: 0 0 12px; }
+.answer p:last-child { margin-bottom: 0; }
+.answer strong { font-weight: 600; }
+.answer ul { list-style: disc; padding-left: 20px; margin: 0 0 12px; }
+.answer ol { list-style: decimal; padding-left: 20px; margin: 0 0 12px; }
+.answer li { margin: 4px 0; }
+.answer h1, .answer h2, .answer h3 { font-size: 17px; line-height: 24px; font-weight: 500; letter-spacing: -0.2px; margin: 18px 0 8px; }
+.answer a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--border-strong); }
+.answer code { font-family: var(--font-geist-mono), monospace; font-size: 13px; background: var(--bg-sunken); padding: 1px 5px; border-radius: 6px; }
+.answer table { width: 100%; border-collapse: collapse; margin: 4px 0 14px; font-size: 14px; line-height: 20px; }
+.answer th { text-align: left; font-weight: 500; color: var(--text-muted); border-bottom: 1px solid var(--border-strong); padding: 8px 12px 8px 0; }
+.answer td { border-bottom: 1px solid var(--border); padding: 8px 12px 8px 0; vertical-align: top; font-variant-numeric: tabular-nums; }
+.answer .cite { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 5px; margin: 0 1px; border-radius: 999px; background: var(--tint-sky); color: var(--tint-sky-ink); font-family: var(--font-geist-mono), monospace; font-size: 11px; line-height: 1; text-decoration: none; vertical-align: 2px; }
+.answer .cite:hover { background: var(--tint-lilac); color: var(--tint-lilac-ink); }
+
+/* The working indicator: a small dot grid that lights up one dot per step. */
+@keyframes dot-pulse { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+.dot-live { animation: dot-pulse 1.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .dot-live { animation: none; opacity: 1; } }

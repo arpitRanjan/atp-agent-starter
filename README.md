@@ -12,7 +12,7 @@ You are the product manager of this build. An AI coding tool writes the code; yo
 | Invisible sign-in: every visitor gets a private anonymous id, no login screen | The tools (web search, reading pages, running Python, files, documents) |
 | A task box that streams an answer from `src/app/api/agent/route.ts` (a placeholder today) | The skills, and the loader that picks them |
 | The starting database: `runs` and `steps` (`supabase/schema.sql`) | Plans, limits, approvals, questions, follow-ups, memory |
-| The Chapter 1 notebook (`notebooks/01_meet_the_model.ipynb`) | Your task suite and its graders |
+| The Chapter 1 script (`npm run model:test`, `model:try`, `model:suite`, `calc`; see `scripts/meet-the-model.ts`) | Your task suite and its graders |
 | Practice traces for Chapter 2 (`data/practice-traces/`) | Document search, the company connector, images and PDFs |
 | Sample documents (`data/quillnote/`) and a made-up company, Northwind (`data/northwind/`) | The safety work |
 | An eval runner to grow (`scripts/run-evals.ts`) | Every decision in `DECISIONS.md` |
@@ -21,7 +21,7 @@ You are the product manager of this build. An AI coding tool writes the code; yo
 
 | Chapter | You build | Where |
 | --- | --- | --- |
-| 1 | Meet the model; write the 20 tasks your agent must pass | `notebooks/01_meet_the_model.ipynb` (Colab) |
+| 1 | Meet the model; write the 20 tasks your agent must pass | `stage-01/`, `evals/tasks.jsonl` |
 | 2 | Your database; read traces, then query them | `supabase/`, `data/practice-traces/` |
 | 3 | Your live app, and the loop with one tool | `src/app/api/agent/route.ts`, then Vercel |
 | 4 | Your first user and their jobs; agent or not | `AGENT-SPEC.md`, `DECISIONS.md` |
@@ -43,22 +43,30 @@ A finished reference build of each chapter is live at [atp-agent.vercel.app](htt
 
 You need free accounts on GitHub, Supabase and Vercel, and a Claude API key. Your agent's own calls cost about $5 over the whole course; Claude Code, the AI coding tool, runs on the same key and costs more (budget about $20 to $30 for the course, and watch the console's Usage page).
 
-**Chapter 2: your copy and your database**
+**Chapter 1: your copy, your codespace, your key**
 
 1. **Fork this repo** on GitHub (Fork, then Create fork). Your fork is public, which the grader needs.
-2. **Create a Supabase project.** In its SQL editor, run `supabase/schema.sql`, then `supabase/practice.sql`, and load the practice traces (see `data/practice-traces/README.md`).
+2. **Add your Claude key as a Codespaces secret** at github.com/settings/codespaces (New secret, name `ANTHROPIC_API_KEY`, give your fork access), so the scripts, Claude Code and the app all find it.
+3. **Open your fork in a Codespace** (the green Code button, then Codespaces, then Create codespace on main). The packages and Claude Code install themselves.
+4. **Meet the model:** `npm run model:test` (is the key working?), then `npm run model:try` (ten calls from `stage-01/experiments.json`, saved to `stage-01/usage.md`), then write your tasks in `evals/tasks.jsonl` and run `npm run model:suite -- --runs=5` (saved to `stage-01/suite.md`). Work out any expected number with `npm run calc -- "<expression>"`.
+
+**Chapter 2: your database**
+
+5. **Create a Supabase project.** In its SQL editor, run `supabase/schema.sql`, then `supabase/practice.sql`, and load the practice traces (see `data/practice-traces/README.md`).
 
 **Chapter 3: your live app**
 
-3. **Add your Claude key as a Codespaces secret** at github.com/settings/codespaces (New secret, name `ANTHROPIC_API_KEY`, give your fork access), so Claude Code and the app both find it.
-4. **Open your fork in a Codespace** (the green Code button, then Codespaces, then Create codespace on main). The packages and Claude Code install themselves.
-5. **Turn on anonymous sign-ins** in Supabase: Authentication, Sign In / Providers, "Allow anonymous sign-ins".
-6. **Add your keys.** Copy `.env.example` to `.env.local` and fill it in: from Supabase's Project Settings, the project URL (Data API) and the publishable and secret keys (API Keys). `.env.local` is never committed.
-7. **Run it:** `npm run dev`, then open the forwarded port. Type a task: the placeholder answers.
-8. **Check it:** `npm run build` must pass before you deploy.
-9. **Deploy:** import your fork into Vercel and add the same keys under the project's Environment Variables.
+6. **Turn on anonymous sign-ins** in Supabase: Authentication, Sign In / Providers, "Allow anonymous sign-ins".
+7. **Add your keys.** Copy `.env.example` to `.env.local` and fill it in: from Supabase's Project Settings, the project URL (Data API) and the publishable and secret keys (API Keys). `.env.local` is never committed.
+8. **Run it:** `npm run dev`, then open the forwarded port. Type a task: the placeholder answers.
+9. **Check it:** `npm run build` must pass before you deploy.
+10. **Deploy:** import your fork into Vercel and add the same keys under the project's Environment Variables. Put your live link at the top of this README.
 
 Before you share your live link with anyone, read [SECURITY.md](SECURITY.md): with no login, every visitor can spend your model credit until you add limits.
+
+## Submitting a stage
+
+You submit one thing: the link to your fork on GitHub. Everything the grader needs lives in the repo: your live link at the top of this README, each stage's work and explanations in `stage-NN/`, your decisions, scoreboard and build log in the files below, and any query results, screenshots or recording links written into those files. The grader reads the README first, then the stage folder, then the code, and opens the live link named in the README.
 
 ## The files you keep
 

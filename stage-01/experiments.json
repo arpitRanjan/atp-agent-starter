@@ -1,0 +1,15 @@
+{
+  "_about": "Chapter 1: ten calls, each changing one thing. Run them with `npm run model:try`, read stage-01/usage.md, then CHANGE ME: swap in your own prompts and settings and run again. Fields: prompt, system, model (claude-haiku-5-5 or claude-sonnet-5-5), effort (low, medium, high), thinking (true or false), max_tokens, stream (true or false). Call 6 is cut off on purpose.",
+  "calls": [
+    { "prompt": "What is 17% of 2,340?" },
+    { "prompt": "What is 17% of 2,340?", "effort": "low" },
+    { "prompt": "What is 17% of 2,340?", "effort": "high" },
+    { "prompt": "What is 17% of 2,340?", "thinking": false, "effort": "low" },
+    { "prompt": "Explain an API to a 10-year-old.", "system": "You answer in exactly two short sentences." },
+    { "prompt": "Explain an API to a 10-year-old.", "max_tokens": 30, "thinking": false, "effort": "low" },
+    { "prompt": "Who won the most recent FIFA World Cup?" },
+    { "prompt": "Write a haiku about product roadmaps.", "stream": true },
+    { "prompt": "Write a haiku about product roadmaps.", "stream": true, "thinking": false, "effort": "low" },
+    { "prompt": "Write a haiku about product roadmaps.", "model": "claude-sonnet-5-5", "stream": true }
+  ]
+}

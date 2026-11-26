@@ -7,7 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "evals": "tsx --env-file=.env.local scripts/run-evals.ts"
+    "evals": "tsx --env-file=.env.local scripts/run-evals.ts",
+    "model:test": "tsx --env-file-if-exists=.env.local scripts/meet-the-model.ts test",
+    "model:try": "tsx --env-file-if-exists=.env.local scripts/meet-the-model.ts try",
+    "model:ask": "tsx --env-file-if-exists=.env.local scripts/meet-the-model.ts ask",
+    "model:suite": "tsx --env-file-if-exists=.env.local scripts/meet-the-model.ts suite",
+    "calc": "tsx --env-file-if-exists=.env.local scripts/meet-the-model.ts calc"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.14.0",

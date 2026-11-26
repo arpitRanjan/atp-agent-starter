@@ -12,7 +12,7 @@ You are the product manager of this build. An AI coding tool writes the code; yo
 | Invisible sign-in: every visitor gets a private anonymous id, no login screen | The tools (web search, reading pages, running Python, files, documents) |
 | A task box that streams an answer from `src/app/api/agent/route.ts` (a placeholder today) | The skills, and the loader that picks them |
 | The starting database: `runs` and `steps` (`supabase/schema.sql`) | Plans, limits, approvals, questions, follow-ups, memory |
-| The Chapter 1 script (`npm run model:test`, `model:try`, `model:suite`, `calc`; see `scripts/meet-the-model.ts`) | Your task suite and its graders |
+| The Chapter 1 script (`npm run model:test`, `model:try`, `model:ask`, `model:suite`, `calc`; see `scripts/meet-the-model.ts`) | Your task suite and its graders |
 | Practice traces for Chapter 2 (`data/practice-traces/`) | Document search, the company connector, images and PDFs |
 | Sample documents (`data/quillnote/`) and a made-up company, Northwind (`data/northwind/`) | The safety work |
 | An eval runner to grow (`scripts/run-evals.ts`) | Every decision in `DECISIONS.md` |
